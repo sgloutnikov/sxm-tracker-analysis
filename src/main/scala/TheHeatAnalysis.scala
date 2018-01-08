@@ -10,6 +10,7 @@ import org.apache.spark.sql.SQLContext._
 import java.sql.Timestamp
 import java.time.format.DateTimeFormatter
 
+import com.mongodb.spark.config.ReadConfig
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.expressions.Window
 import spray.json._
@@ -18,10 +19,8 @@ import spray.json._
 object TheHeatAnalysis {
 
   def main(args: Array[String]) {
-
     Logger.getLogger("org").setLevel(Level.ERROR)
     Logger.getLogger("akka").setLevel(Level.ERROR)
-
 
     val spark = SparkSession.builder()
       .master("local[*]")
@@ -29,24 +28,26 @@ object TheHeatAnalysis {
       .config("spark.mongodb.input.uri", sys.env("MONGO_URI"))
       .getOrCreate()
 
+    // Read in theheat_nowplaying
     val allSongsDF = MongoSpark.load(spark)
     // Convert allSongsDF to station local EST timezone
     val allSongsDF_EST = allSongsDF.select("*").withColumn("startTime", from_utc_timestamp(allSongsDF("startTime"), "GMT-05:00"))
 
-    processDataIntegrity(allSongsDF_EST)
-    //printDataOverview(allSongsDF_EST)
+    // Read in theheat_songs db
+    val songsReadConfig = ReadConfig(Map("collection" -> "theheat_songs"),
+      Some(ReadConfig(spark)))
+    val songsInfoDF = MongoSpark.load(spark, songsReadConfig)
+
+
+    runSpotify(allSongsDF_EST)
+    //runDataOverview(allSongsDF_EST)
+    //runTopSongsAll(allSongsDF_EST, songsInfoDF)
+    //runTopAlbumsAll(allSongsDF_EST)
+
     //processTop(allSongsDF_EST)
-
-    //Build JSON Data
-
-
-
-    //val test = allSongsDF_EST.groupBy(year(allSongsDF_EST("startTime")).alias("year"), dayofyear(allSongsDF_EST("startTime")).alias("day")).count().sort("year", "day")
-    //test.show()
-
   }
 
-  def processDataIntegrity(allSongsDF : DataFrame) {
+  def runSpotify(allSongsDF : DataFrame) {
     val totalSongs = allSongsDF.count()
     println("Total Songs: " + totalSongs)
 
@@ -64,27 +65,25 @@ object TheHeatAnalysis {
     val cleanSongs = songsWithSpotify.union(beyonceSongs)
     println("\nSongs with clean certain clean data : " + cleanSongs.count())
 
-    //Build Data JSON
+    // Save Data JSON
     case class SpotifySongCount(name: String, y: Long)
     object MyJsonProtocol extends DefaultJsonProtocol {
       implicit val sscFormat = jsonFormat2(SpotifySongCount)
     }
     import MyJsonProtocol._
     import spray.json._
-
-    val spotifyDataJson = Seq(new SpotifySongCount("With Spotify", songsWithSpotify.count()),
-      new SpotifySongCount("No Spotify", songsWithoutSpotify.count() - beyonceSongs.count()),
-      new SpotifySongCount("Beyonce Songs", beyonceSongs.count()))
+    val spotifyDataJson = Seq(new SpotifySongCount("Have Spotify Data", songsWithSpotify.count()),
+      new SpotifySongCount("No Spotify Data", songsWithoutSpotify.count() - beyonceSongs.count()),
+      new SpotifySongCount("Songs by Beyoncé", beyonceSongs.count()))
       .toJson
 
     val file = new File("results/spotifyData.json")
     val bw = new BufferedWriter(new FileWriter(file))
     bw.write(spotifyDataJson.prettyPrint)
     bw.close()
-
   }
 
-  def printDataOverview(allSongsDF : DataFrame) {
+  def runDataOverview(allSongsDF : DataFrame) {
     // Oldest and Newest song recorded
     val oldestSong = allSongsDF.sort(asc("startTime")).limit(1).select("song", "artist", "startTime").collectAsList()
     println("Oldest Song: " + oldestSong.get(0))
@@ -98,18 +97,33 @@ object TheHeatAnalysis {
     println("Total Unique Artists: " + totalUniqueArtists)
   }
 
-  def processTop(allSongsDF : DataFrame) {
-    // Top Songs (All)
-    val topSongs = allSongsDF.groupBy("song", "artist").count().sort(desc("count")).limit(50)
-    topSongs.foreach(row => println(row))
-    println(topSongs.toJSON.show())
+  def runTopSongsAll(allSongsDF : DataFrame, songInfoDF : DataFrame) {
+    val topSongsRaw = allSongsDF.groupBy("song", "artist").count().sort(desc("count")).limit(50)
+    val topSongs = topSongsRaw.join(songInfoDF, topSongsRaw("song") === songInfoDF("song")
+      && topSongsRaw("artist") === songInfoDF("artist")).sort(desc("count")).collect()
 
+    println("Top Songs (All)")
+    var rank : Int = 1
+    topSongs.foreach(row => {
+      val song = row.get(0).toString
+      val artist = row.get(1).toString
+      val playCount = row.get(2)
+      val spotify = row.getStruct(row.fieldIndex("spotify"))
+      println("Rank: " + rank)
+      println(artist + " - " + song + " - " + playCount)
+      println(spotify.get(5))
+      rank += 1
+    })
+  }
+
+  def runTopAlbumsAll(allSongsDF : DataFrame) {
     // Top Albums (All)
     val topAlbums = allSongsDF.groupBy("spotify.album").count().sort(desc("count")).limit(50)
     topAlbums.show()
-    val topAlbums2 = allSongsDF.groupBy("album").count().sort(desc("count")).limit(50)
-    topAlbums2.show()
+  }
 
+  def processTop(allSongsDF : DataFrame) {
+    /*
     // Total songs played per day
     val totalSongsPerDay = allSongsDF.groupBy(year(allSongsDF("startTime")).alias("year"),
       dayofyear(allSongsDF("startTime")).alias("day")).count().sort("year", "day").show()
@@ -138,7 +152,7 @@ object TheHeatAnalysis {
       maxNumPlayedPerMonth("year") === songsPerMonth("year") &&
       maxNumPlayedPerMonth("month") === songsPerMonth("month"))
     mostPlayedSongPerMonth.show()
-
+    */
   }
 
 
