@@ -1,0 +1,298 @@
+
+Total Songs: 202656
+Songs with Spotify: 197118
+Songs without Spotify: 5538
++--------------------+---------------+-----+
+|              artist|           song|count|
++--------------------+---------------+-----+
+|             Beyonce|          Sorry| 1616|
+|             Beyonce|        Hold Up| 1291|
+|             Beyonce|      All Night|  832|
+|             Ray Jr.|    Noze Bleedz|  249|
+|               6lack|       Problems|  243|
+|             Jeremih|   Nobody But U|  163|
+|               Jay-Z|           4:44|  150|
+|           The-Dream| That's My Shit|  102|
+|               Drake|   How Bout Now|   93|
+|Ne-Yo/Jamie Foxx/...|She Got Her Own|   90|
++--------------------+---------------+-----+
+only showing top 10 rows
+
+Songs with clean certain clean data : 200871
+
+Oldest Song: [Nothing Is Promised,Mike Will Made-It/Rihanna,2016-06-20 06:49:38.0]
+
+Newest Song: [Ni**as In Paris,Jay-Z/Kanye West,2018-01-08 15:16:34.0]
+
+Total Unique Songs: 1508
+
+Total Unique Artists: 1041
+
+Top Songs (All)
+Rank: 1
+DJ Drama/Chris Brown/Skeme/Lyquin - Wishing - 2197
+https://open.spotify.com/track/3CBjt0dsLlaz9h2OodDYAW
+Rank: 2
+Tory Lanez - LUV - 2181
+https://open.spotify.com/track/16Ah4QqH4mgYVXqfC4mdSd
+Rank: 3
+PARTYNEXTDOOR/Drake - Come And See Me - 2003
+https://open.spotify.com/track/1wZqJM5FGDEl3FjHDxDyQd
+Rank: 4
+Lloyd - Tru - 1959
+https://open.spotify.com/track/1DFPibRb9RU3yfM3wOLdDT
+Rank: 5
+Usher/Young Thug - No Limit - 1949
+https://open.spotify.com/track/4DRDMf5vftalExCy0fHbHl
+Rank: 6
+DJ Khaled/Drake - For Free - 1900
+https://open.spotify.com/track/4JDZl9nKIAhAhDjw753u4X
+Rank: 7
+Schoolboy Q/Miguel/Justine Skye - Overtime - 1875
+https://open.spotify.com/track/5lsrKf4mzIO4gA9U9eBYms
+Rank: 8
+The Game/Jeremih - All Eyez - 1868
+https://open.spotify.com/track/3JEzGRDUsozrehZTq3dKE8
+Rank: 9
+Wale - My P.Y.T. - 1778
+https://open.spotify.com/track/4jK1VQQGDnNOLfyVXCxGsR
+Rank: 10
+R.LUM.R - Frustrated - 1777
+https://open.spotify.com/track/1N5j9dRZ3foNWwU4Zp0pbq
+Rank: 11
+Chris Brown - Grass Ain't Greener - 1737
+https://open.spotify.com/track/6DaE3A1uIvDqVrVSNvUy6B
+Rank: 12
+Drake - Controlla - 1736
+https://open.spotify.com/track/4CpKEkdGbOJV51cSvx7SoG
+Rank: 13
+Bruno Mars - 24K Magic - 1718
+https://open.spotify.com/track/6b8Be6ljOzmkOmFslEb23P
+Rank: 14
+Bruno Mars - That's What I Like - 1699
+https://open.spotify.com/track/0KKkJNfGyhkQ5aFogxQAPU
+Rank: 15
+Chris Brown/Usher/Gucci Mane - Party - 1646
+https://open.spotify.com/track/05Z7jet4VDNVgNQWcYHnrk
+Rank: 16
+Russ - Losin Control - 1631
+https://open.spotify.com/track/4cxMGhkinTocPSVVKWIw0d
+Rank: 17
+Trey Songz - Push It On Me - 1616
+https://open.spotify.com/track/0wasgXy8PI6t4EfA49YnXE
+Rank: 18
+Beyonce - Sorry - 1616
+
+Rank: 19
+Drake - Teenage Fever - 1599
+https://open.spotify.com/track/6n3HGiq4v35D6eFOSwqYuo
+Rank: 20
+The Weeknd/Daft Punk - Starboy - 1596
+https://open.spotify.com/track/7MXVkk9YMctZqd1Srtv4MB
+Rank: 21
+French Montana/Swae Lee - Unforgettable - 1569
+https://open.spotify.com/track/3B54sVLJ402zGa6Xm4YGNe
+Rank: 22
+Kendrick Lamar/Rihanna - LOYALTY. - 1554
+https://open.spotify.com/track/6SwRhMLwNqEi6alNPVG00n
+Rank: 23
+Ty Dolla $ign/Lil Wayne/The-Dream - Love U Better - 1538
+https://open.spotify.com/track/270aLuFCbX32hhBr8MQyPM
+Rank: 24
+Drake - Fake Love - 1496
+https://open.spotify.com/track/343YBumqHu19cGoGARUTsd
+Rank: 25
+Calvin Harris/Frank Ocean/Migos - Slide - 1487
+https://open.spotify.com/track/6gpcs5eMhJwax4mIfKDYQk
+Rank: 26
+Rihanna - Needed Me - 1475
+https://open.spotify.com/track/1Tt4sE4pXi57mTD1GCzsqm
+Rank: 27
+Bryson Tiller - Sorry Not Sorry - 1469
+https://open.spotify.com/track/16bHRxM89ue0TiCKARYbRp
+Rank: 28
+Meek Mill/Chris Brown/Ty Dolla $ign - Whatever You Need - 1468
+https://open.spotify.com/track/6yMxfx9wpiuhhdb8vHDVMu
+Rank: 29
+Gucci Mane/Drake - Both - 1463
+https://open.spotify.com/track/5tFep7dXGd7vEJ668wTPux
+Rank: 30
+Kid Ink/Jeremih/Spice - Nasty - 1459
+https://open.spotify.com/track/7CGl5DRfDKgVpoHZv1Thvj
+Rank: 31
+Goldlink/Shy Glizzy/Brent Faiyaz - Crew - 1444
+https://open.spotify.com/track/15EPc80XuFrb2LmOzGjuRg
+Rank: 32
+SZA/Travis Scott - Love Galore - 1426
+https://open.spotify.com/track/0q75NwOoFiARAVp4EXU4Bs
+Rank: 33
+Kent Jones - Don't Mind - 1406
+https://open.spotify.com/track/27PmvZoffODNFW2p7ehZTQ
+Rank: 34
+Khalid - Location - 1394
+https://open.spotify.com/track/152lZdxL1OR0ZMW6KquMif
+Rank: 35
+Lecrae/Ty Dolla $ign - Blessings - 1378
+https://open.spotify.com/track/6VnLjrkcajFj4Rzq6jFznj
+Rank: 36
+DJ Khaled/Nicki Minaj/Chris Brown/A - Do You Mind - 1360
+https://open.spotify.com/track/4VJ7mnW4wjjIgPBM6KWvPu
+Rank: 37
+Rae Sremmurd/Gucci Mane - Black Beatles - 1334
+https://open.spotify.com/track/6fujklziTHa8uoM5OQSfIo
+Rank: 38
+The Weeknd/Daft Punk - I Feel It Coming - 1296
+https://open.spotify.com/track/3dhjNA0jGA8vHBQ1VdD6vV
+Rank: 39
+Beyonce - Hold Up - 1291
+
+Rank: 40
+Rihanna - Sex With Me - 1291
+https://open.spotify.com/track/6WAxKNbZoGNzQTIvdMqkFs
+Rank: 41
+Dreezy/Jeremih - Body - 1273
+https://open.spotify.com/track/20s34XSPIiYMGSFDRSs24t
+Rank: 42
+DJ Khaled/Rihanna/Bryson Tiller - Wild Thoughts - 1261
+https://open.spotify.com/track/45XhKYRRkyeqoW3teSOkCM
+Rank: 43
+Bryson Tiller - Exchange - 1254
+https://open.spotify.com/track/43PuMrRfbyyuz4QpZ3oAwN
+Rank: 44
+Migos/Lil Uzi Vert - Bad & Boujee - 1247
+https://open.spotify.com/track/4Km5HrUvYTaSUfiSGPJeQR
+Rank: 45
+Wiz Khalifa/Ty Dolla $ign - Something New - 1213
+https://open.spotify.com/track/33z5crv3IO5U2BOi8xod92
+Rank: 46
+DJ Khaled/Beyonce/Jay Z - Shining - 1168
+https://open.spotify.com/track/7Fa5UNizycSms5jP3SQD3F
+Rank: 47
+Miguel/Travis Scott - Sky Walker - 1159
+https://open.spotify.com/track/5WoaF1B5XIEnWfmb5NZikf
+Rank: 48
+Rihanna/Drake - Work - 1142
+https://open.spotify.com/track/32lmL4vQAAotg6MrJnhlQZ
+Rank: 49
+The Weeknd - Party Monster - 1130
+https://open.spotify.com/track/4F7A0DXBrmUAkp32uenhZt
+Rank: 50
+Yo Gotti/Mike Will Made-It/Nicki Mi - Rake It Up - 1102
+https://open.spotify.com/track/4knL4iPxPOZjQzTUlELGSY
+
++--------------------+-----+
+|               album|count|
++--------------------+-----+
+|                    | 5538|
+|             Starboy| 4501|
+|               Views| 3745|
+|           24K Magic| 3717|
+|                ANTI| 3647|
+|               DAMN.| 3576|
+|     T R A P S O U L| 3368|
+|          I Told You| 2919|
+|            No Limit| 2622|
+|           More Life| 2463|
+|Wishing (feat. Ch...| 2200|
+|        Tru - Single| 1959|
+|            For Free| 1900|
+|       Blank Face LP| 1875|
+|PARTYNEXTDOOR 3 (P3)| 1800|
+|              MY PYT| 1778|
+|          Frustrated| 1777|
+|                Ctrl| 1764|
+|    No Hard Feelings| 1735|
+| Grass Ain't Greener| 1716|
++--------------------+-----+
+only showing top 20 rows
+
++----+---+-------------+--------------------+-----+
+|year|day|         song|              artist|count|
++----+---+-------------+--------------------+-----+
+|2017|338|        LOVE.|Kendrick Lamar/Za...|   21|
+|2017|338|Something New|Wiz Khalifa/Ty Do...|   20|
+|2017|340|Something New|Wiz Khalifa/Ty Do...|   19|
+|2017|338|   Sky Walker| Miguel/Travis Scott|   19|
+|2017|340|   Sky Walker| Miguel/Travis Scott|   19|
+|2017|340|  The Weekend|                 SZA|   19|
+|2017|340|        LOVE.|Kendrick Lamar/Za...|   18|
+|2017|359|   Sky Walker| Miguel/Travis Scott|   18|
+|2017|341|        LOVE.|Kendrick Lamar/Za...|   18|
+|2016|333|    24K Magic|          Bruno Mars|   18|
+|2017|338|  The Weekend|                 SZA|   18|
+|2017|339|Something New|Wiz Khalifa/Ty Do...|   18|
+|2017|341|Something New|Wiz Khalifa/Ty Do...|   17|
+|2017|347|  The Weekend|                 SZA|   17|
+|2018|  4|        LOVE.|Kendrick Lamar/Za...|   17|
+|2017|354|Something New|Wiz Khalifa/Ty Do...|   17|
+|2017|362|        LOVE.|Kendrick Lamar/Za...|   17|
+|2017|339|        LOVE.|Kendrick Lamar/Za...|   17|
+|2017|268|   Rake It Up|Yo Gotti/Mike Wil...|   17|
+|2017|362|Love U Better|Ty Dolla $ign/Lil...|   17|
++----+---+-------------+--------------------+-----+
+only showing top 20 rows
+
+
+Top 3 Songs Per Month
+[2016,6,Sorry,Beyonce,103,1]
+[2016,6,Grass Ain't Greener,Chris Brown,102,2]
+[2016,6,Needed Me,Rihanna,99,3]
+[2016,7,Exchange,Bryson Tiller,298,1]
+[2016,7,Sorry,Beyonce,297,2]
+[2016,7,Controlla,Drake,285,3]
+[2016,8,For Free,DJ Khaled/Drake,302,1]
+[2016,8,LUV,Tory Lanez,274,2]
+[2016,8,No Limit,Usher/Young Thug,267,3]
+[2016,9,LUV,Tory Lanez,288,1]
+[2016,9,For Free,DJ Khaled/Drake,288,1]
+[2016,9,Wishing,DJ Drama/Chris Brown/Skeme/Lyquin,277,3]
+[2016,10,Tru,Lloyd,301,1]
+[2016,10,Come And See Me,PARTYNEXTDOOR/Drake,259,2]
+[2016,10,Wishing,DJ Drama/Chris Brown/Skeme/Lyquin,255,3]
+[2016,11,All Eyez,The Game/Jeremih,263,1]
+[2016,11,Wishing,DJ Drama/Chris Brown/Skeme/Lyquin,247,2]
+[2016,11,Do You Mind,DJ Khaled/Nicki Minaj/Chris Brown/A,246,3]
+[2016,12,Come And See Me,PARTYNEXTDOOR/Drake,289,1]
+[2016,12,Black Beatles,Rae Sremmurd/Gucci Mane,256,2]
+[2016,12,Do You Mind,DJ Khaled/Nicki Minaj/Chris Brown/A,252,3]
+[2017,1,Push It On Me,Trey Songz,292,1]
+[2017,1,Do You Mind,DJ Khaled/Nicki Minaj/Chris Brown/A,263,2]
+[2017,1,Wishing,DJ Drama/Chris Brown/Skeme/Lyquin,254,3]
+[2017,2,Fake Love,Drake,240,1]
+[2017,2,Party,Chris Brown/Usher/Gucci Mane,239,2]
+[2017,2,Location,Khalid,236,3]
+[2017,3,Party,Chris Brown/Usher/Gucci Mane,270,1]
+[2017,3,Frustrated,R.LUM.R,268,2]
+[2017,3,Overtime,Schoolboy Q/Miguel/Justine Skye,249,3]
+[2017,4,Frustrated,R.LUM.R,284,1]
+[2017,4,That's What I Like,Bruno Mars,271,2]
+[2017,4,Shining,DJ Khaled/Beyonce/Jay Z,265,3]
+[2017,5,That's What I Like,Bruno Mars,267,1]
+[2017,5,Location (Remix),Khalid/Lil Wayne/Kehlani,259,2]
+[2017,5,Both,Gucci Mane/Drake,252,3]
+[2017,6,Blessings,Lecrae/Ty Dolla $ign,200,1]
+[2017,6,Losin Control,Russ,189,2]
+[2017,6,I'm The One,DJ Khaled/Justin Bieber/Quavo/Chanc,181,3]
+[2017,7,Wild Thoughts,DJ Khaled/Rihanna/Bryson Tiller,317,1]
+[2017,7,Teenage Fever,Drake,281,2]
+[2017,7,Love Galore,SZA/Travis Scott,277,3]
+[2017,8,LOYALTY.,Kendrick Lamar/Rihanna,306,1]
+[2017,8,It's A Vibe,2 Chainz/Ty Dolla $ign/Trey Songz/J,296,2]
+[2017,8,Whatever You Need,Meek Mill/Chris Brown/Ty Dolla $ign,290,3]
+[2017,9,Unforgettable,French Montana/Swae Lee,292,1]
+[2017,9,LOYALTY.,Kendrick Lamar/Rihanna,279,2]
+[2017,9,Love U Better,Ty Dolla $ign/Lil Wayne/The-Dream,273,3]
+[2017,10,Something New,Wiz Khalifa/Ty Dolla $ign,268,1]
+[2017,10,Insecure,Jazmine Sullivan/Bryson Tiller,256,2]
+[2017,10,Love U Better,Ty Dolla $ign/Lil Wayne/The-Dream,256,2]
+[2017,11,Love U Better,Ty Dolla $ign/Lil Wayne/The-Dream,308,1]
+[2017,11,LOVE.,Kendrick Lamar/Zacari,289,2]
+[2017,11,Something New,Wiz Khalifa/Ty Dolla $ign,276,3]
+[2017,12,Sky Walker,Miguel/Travis Scott,455,1]
+[2017,12,LOVE.,Kendrick Lamar/Zacari,449,2]
+[2017,12,Something New,Wiz Khalifa/Ty Dolla $ign,447,3]
+[2018,1,LOVE.,Kendrick Lamar/Zacari,95,1]
+[2018,1,Sky Walker,Miguel/Travis Scott,95,1]
+[2018,1,No Limit,G-Eazy/A$AP Rocky/Cardi B,95,1]
+
+Process finished with exit code 0

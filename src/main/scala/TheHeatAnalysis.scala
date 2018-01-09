@@ -44,12 +44,14 @@ object TheHeatAnalysis {
     val songsInfoDF = MongoSpark.load(spark, songsReadConfig)
 
 
-    //runSpotify(allSongsDF_EST)
-    //runDataOverview(allSongsDF_EST)
-    //runTopSongsAll(allSongsDF_EST, songsInfoDF)
-    //runTopAlbumsAll(allSongsDF_EST)
+    runSpotify(allSongsDF_EST)
+    runDataOverview(allSongsDF_EST)
+    runTopSongsAll(allSongsDF_EST, songsInfoDF)
+    runTopAlbumsAll(allSongsDF_EST)
     runSongsPerDay(allSongsDF_EST)
-
+    //runSongsPerMonth(allSongsDF_EST)
+    runMostPlayedSongOnAnyDay(allSongsDF_EST)
+    runTopPlayedSongPerMonth(allSongsDF_EST)
   }
 
   def runSpotify(allSongsDF : DataFrame) {
@@ -198,23 +200,22 @@ object TheHeatAnalysis {
   }
 
   def runTopPlayedSongPerMonth(allSongsDF : DataFrame) {
-    /*
+    // Top song per month
+    //val maxNumPlayedPerMonth = songsPerMonth.groupBy("year", "month").agg(max("playedInMonth").alias("maxInMonth"))
+    //val mostPlayedSongPerMonth = maxNumPlayedPerMonth.join(songsPerMonth, col("maxInMonth") === col("playedInMonth") &&
+    //  maxNumPlayedPerMonth("year") === songsPerMonth("year") &&
+    //  maxNumPlayedPerMonth("month") === songsPerMonth("month"))
+    //mostPlayedSongPerMonth.show()
+
     // Most played song per month
     val songsPerMonth = allSongsDF.groupBy(year(allSongsDF("startTime")).alias("year"), month(allSongsDF("startTime")).alias("month"),
       allSongsDF("song"), allSongsDF("artist")).agg(count("*").alias("playedInMonth"))
     // Top 3 songs per month
     val top3PerMonth = songsPerMonth.withColumn("rank", rank().over(Window.partitionBy("year", "month")
       .orderBy(songsPerMonth("playedInMonth").desc)))
-      .filter(col("rank") <= 3).sort("year", "month", "rank")
-    top3PerMonth.show()
-    // Top song per month
-    val maxNumPlayedPerMonth = songsPerMonth.groupBy("year", "month").agg(max("playedInMonth").alias("maxInMonth"))
-    val mostPlayedSongPerMonth = maxNumPlayedPerMonth.join(songsPerMonth, col("maxInMonth") === col("playedInMonth") &&
-      maxNumPlayedPerMonth("year") === songsPerMonth("year") &&
-      maxNumPlayedPerMonth("month") === songsPerMonth("month"))
-    mostPlayedSongPerMonth.show()
-    */
+      .filter(col("rank") <= 3).sort("year", "month", "rank").collect()
+    println("Top 3 Songs Per Month")
+    top3PerMonth.foreach(println)
   }
-
 
 }
