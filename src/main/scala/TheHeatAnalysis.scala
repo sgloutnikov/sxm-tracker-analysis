@@ -50,7 +50,6 @@ object TheHeatAnalysis {
     //runTopAlbumsAll(allSongsDF_EST)
     runSongsPerDay(allSongsDF_EST)
 
-    //processTop(allSongsDF_EST)
   }
 
   def runSpotify(allSongsDF : DataFrame) {
@@ -185,19 +184,21 @@ object TheHeatAnalysis {
     bw.close()
   }
 
-  def processTop(allSongsDF : DataFrame) {
-    /*
-
+  def runSongsPerMonth(allSongsDF : DataFrame) {
     // Total songs per calendar month
     val totalSongsPerMonth = allSongsDF.groupBy(year(allSongsDF("startTime")).alias("year"),
-      month(allSongsDF("startTime")).alias("month")).count().sort("year", "month").show()
+      month(allSongsDF("startTime")).alias("month")).count().sort("year", "month")
+  }
 
+  def runMostPlayedSongOnAnyDay(allSongsDF : DataFrame) {
     // Most played song on any day
     val topPlayedSongAnyDay = allSongsDF.groupBy(year(allSongsDF("startTime")).alias("year"),
       dayofyear(allSongsDF("startTime")).alias("day"), allSongsDF("song"), allSongsDF("artist"))
       .count().sort(desc("count")).show()
+  }
 
-
+  def runTopPlayedSongPerMonth(allSongsDF : DataFrame) {
+    /*
     // Most played song per month
     val songsPerMonth = allSongsDF.groupBy(year(allSongsDF("startTime")).alias("year"), month(allSongsDF("startTime")).alias("month"),
       allSongsDF("song"), allSongsDF("artist")).agg(count("*").alias("playedInMonth"))
