@@ -2,19 +2,12 @@
 import java.io.{BufferedWriter, File, FileWriter}
 
 import com.mongodb.spark.MongoSpark
-import org.apache.log4j.{Level, Logger}
-import org.apache.spark.api.java.function.ForeachFunction
-import org.apache.spark.sql.{DataFrame, Row, SparkSession}
-import org.apache.spark.sql.functions._
-import org.apache.spark.sql.SQLContext._
-import java.sql.Timestamp
-import java.time.format.DateTimeFormatter
-
 import com.mongodb.spark.config.ReadConfig
-import org.apache.spark.SparkContext
-import org.apache.spark.rdd.RDD
+import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
+import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import org.joda.time.LocalDate
 import spray.json._
 
@@ -200,13 +193,6 @@ object TheHeatAnalysis {
   }
 
   def runTopPlayedSongPerMonth(allSongsDF : DataFrame) {
-    // Top song per month
-    //val maxNumPlayedPerMonth = songsPerMonth.groupBy("year", "month").agg(max("playedInMonth").alias("maxInMonth"))
-    //val mostPlayedSongPerMonth = maxNumPlayedPerMonth.join(songsPerMonth, col("maxInMonth") === col("playedInMonth") &&
-    //  maxNumPlayedPerMonth("year") === songsPerMonth("year") &&
-    //  maxNumPlayedPerMonth("month") === songsPerMonth("month"))
-    //mostPlayedSongPerMonth.show()
-
     // Most played song per month
     val songsPerMonth = allSongsDF.groupBy(year(allSongsDF("startTime")).alias("year"), month(allSongsDF("startTime")).alias("month"),
       allSongsDF("song"), allSongsDF("artist")).agg(count("*").alias("playedInMonth"))
@@ -216,6 +202,14 @@ object TheHeatAnalysis {
       .filter(col("rank") <= 3).sort("year", "month", "rank").collect()
     println("Top 3 Songs Per Month")
     top3PerMonth.foreach(println)
+
+
+    // Top song per month
+    // val maxNumPlayedPerMonth = songsPerMonth.groupBy("year", "month").agg(max("playedInMonth").alias("maxInMonth"))
+    // val mostPlayedSongPerMonth = maxNumPlayedPerMonth.join(songsPerMonth, col("maxInMonth") === col("playedInMonth") &&
+    //   maxNumPlayedPerMonth("year") === songsPerMonth("year") &&
+    //   maxNumPlayedPerMonth("month") === songsPerMonth("month"))
+    // mostPlayedSongPerMonth.show()
   }
 
 }
