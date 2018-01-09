@@ -166,7 +166,7 @@ object TheHeatAnalysis {
     stringOutput.append("[")
     mergedChartData.collect().foreach(r => {
       val year = Integer.parseInt(r.get(r.fieldIndex("eYear")).toString)
-      val month = Integer.parseInt(r.get(r.fieldIndex("eMonth")).toString)
+      val month = Integer.parseInt(r.get(r.fieldIndex("eMonth")).toString) - 1
       val day = Integer.parseInt(r.get(r.fieldIndex("eDay")).toString)
       val count = r.get(r.fieldIndex("mergedCount"))
       stringOutput.append(String.format(f"[Date.UTC($year%d, $month%d, $day%d), $count%s],\n"))
