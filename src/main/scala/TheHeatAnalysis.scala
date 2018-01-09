@@ -4,7 +4,7 @@ import java.io.{BufferedWriter, File, FileWriter}
 import com.mongodb.spark.MongoSpark
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.api.java.function.ForeachFunction
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.SQLContext._
 import java.sql.Timestamp
@@ -12,21 +12,26 @@ import java.time.format.DateTimeFormatter
 
 import com.mongodb.spark.config.ReadConfig
 import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.expressions.Window
+import org.apache.spark.sql.types._
+import org.joda.time.LocalDate
 import spray.json._
+
+import scala.collection.mutable.ListBuffer
 
 
 object TheHeatAnalysis {
 
+  val spark = SparkSession.builder()
+    .master("local[*]")
+    .appName("MongoSparkConnectorIntro")
+    .config("spark.mongodb.input.uri", sys.env("MONGO_URI"))
+    .getOrCreate()
+
   def main(args: Array[String]) {
     Logger.getLogger("org").setLevel(Level.ERROR)
     Logger.getLogger("akka").setLevel(Level.ERROR)
-
-    val spark = SparkSession.builder()
-      .master("local[*]")
-      .appName("MongoSparkConnectorIntro")
-      .config("spark.mongodb.input.uri", sys.env("MONGO_URI"))
-      .getOrCreate()
 
     // Read in theheat_nowplaying
     val allSongsDF = MongoSpark.load(spark)
@@ -39,10 +44,11 @@ object TheHeatAnalysis {
     val songsInfoDF = MongoSpark.load(spark, songsReadConfig)
 
 
-    runSpotify(allSongsDF_EST)
+    //runSpotify(allSongsDF_EST)
     //runDataOverview(allSongsDF_EST)
     //runTopSongsAll(allSongsDF_EST, songsInfoDF)
     //runTopAlbumsAll(allSongsDF_EST)
+    runSongsPerDay(allSongsDF_EST)
 
     //processTop(allSongsDF_EST)
   }
@@ -122,11 +128,65 @@ object TheHeatAnalysis {
     topAlbums.show()
   }
 
-  def processTop(allSongsDF : DataFrame) {
-    /*
+  def runSongsPerDay(allSongsDF : DataFrame) {
     // Total songs played per day
     val totalSongsPerDay = allSongsDF.groupBy(year(allSongsDF("startTime")).alias("year"),
-      dayofyear(allSongsDF("startTime")).alias("day")).count().sort("year", "day").show()
+      month(allSongsDF("startTime")).alias("month"), dayofmonth(allSongsDF("startTime")).alias("day")).count()
+      .sort("year", "month", "day")
+
+    //Format data for Highcharts, add missing days as 0 and save to file.
+    val startYear = Integer.parseInt(totalSongsPerDay.first().get(0).toString)
+    val startMonth = Integer.parseInt(totalSongsPerDay.first().get(1).toString)
+    val startDay = Integer.parseInt(totalSongsPerDay.first().get(2).toString)
+    // End range
+    val newestSongDate = totalSongsPerDay.sort(desc("year"), desc("month"), desc("day")).first()
+    val endYear = Integer.parseInt(newestSongDate.get(0).toString)
+    val endMonth = Integer.parseInt(newestSongDate.get(1).toString)
+    val endDay = Integer.parseInt(newestSongDate.get(2).toString)
+    // Iterate over whole data range, create empty DF and merge with existing counts
+    def dayIterator(start: LocalDate, end: LocalDate) = Iterator.iterate(start)(_ plusDays 1) takeWhile (_ isBefore end)
+
+    val emptyDateList = new ListBuffer[Row]()
+    dayIterator(new LocalDate(startYear, startMonth, startDay), new LocalDate(endYear, endMonth, endDay)).foreach(
+      ts => {
+        val row = Row(ts.getYear, ts.getMonthOfYear, ts.getDayOfMonth, 0)
+        emptyDateList += row
+      }
+    )
+    val emptyDateRDD = spark.sparkContext.parallelize(emptyDateList)
+
+    val fieldsSchema = List(
+      StructField("eYear", IntegerType, nullable = false),
+      StructField("eMonth", IntegerType, nullable = false),
+      StructField("eDay", IntegerType, nullable = false),
+      StructField("eCount", IntegerType, nullable = false)
+    )
+    val emptyDateRange = spark.createDataFrame(emptyDateRDD, StructType(fieldsSchema))
+    val mergedChartData = emptyDateRange.join(totalSongsPerDay, emptyDateRange("eYear") === totalSongsPerDay("year") &&
+      emptyDateRange("eMonth") === totalSongsPerDay("month") && emptyDateRange("eDay") === totalSongsPerDay("day"), "left_outer")
+      .withColumn("mergedCount", emptyDateRange("eCount") + totalSongsPerDay("count"))
+      .sort("eYear", "eMonth", "eDay")
+
+    // Prepare and save to file
+    val stringOutput = StringBuilder.newBuilder
+    stringOutput.append("[")
+    mergedChartData.collect().foreach(r => {
+      val year = Integer.parseInt(r.get(r.fieldIndex("eYear")).toString)
+      val month = Integer.parseInt(r.get(r.fieldIndex("eMonth")).toString)
+      val day = Integer.parseInt(r.get(r.fieldIndex("eDay")).toString)
+      val count = r.get(r.fieldIndex("mergedCount"))
+      stringOutput.append(String.format(f"[Date.UTC($year%d, $month%d, $day%d), $count%s],\n"))
+    })
+    stringOutput.append("]")
+
+    val file = new File("results/songsPerDay.data")
+    val bw = new BufferedWriter(new FileWriter(file))
+    bw.write(stringOutput.toString())
+    bw.close()
+  }
+
+  def processTop(allSongsDF : DataFrame) {
+    /*
 
     // Total songs per calendar month
     val totalSongsPerMonth = allSongsDF.groupBy(year(allSongsDF("startTime")).alias("year"),
